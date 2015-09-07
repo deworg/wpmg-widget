@@ -11,6 +11,9 @@ Version:        0.2
 Tested up to: 	4.3
 
 License: 		GPL2
+
+GitHub Plugin URI: https://github.com/wpFRA/wpmg-widget
+GitHub Branch: master
 */
 
 
