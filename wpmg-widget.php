@@ -35,10 +35,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class wpmg_list extends WP_Widget {
 
-	function wpmg_list() {
-		$widget_ops = array('description' => __('Liste deutscher WP Meetups', 'wpmg-widget'));
-
-		parent::WP_Widget(false, __('WP Meetups Germany', 'wpmg-widget'),$widget_ops);
+	public function __construct() {
+		$widget_ops = array( 'description' => __( 'Liste deutscher WP Meetups', 'wpmg-widget' ) );
+		parent::__construct( false, __( 'WP Meetups Germany', 'wpmg-widget' ), $widget_ops );
 	}
 
 	function widget($args, $instance) {
