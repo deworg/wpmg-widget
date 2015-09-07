@@ -36,15 +36,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class wpmg_list extends WP_Widget {
 
 	function wpmg_list() {
-		$widget_ops = array('description' => 'Liste deutscher WP Meetups' , 'wpmg-widget');
+		$widget_ops = array('description' => __('Liste deutscher WP Meetups', 'wpmg-widget'));
 
 		parent::WP_Widget(false, __('WP Meetups Germany', 'wpmg-widget'),$widget_ops);
 	}
 
-	function widget($args, $instance) {  
+	function widget($args, $instance) {
 		extract( $args );
 		$title = $instance['title'];
-		
+
 		echo $before_widget; ?>
 		 <?php if ( $title )
                         echo $before_title . $title . $after_title; ?>
@@ -68,11 +68,11 @@ class wpmg_list extends WP_Widget {
 
 		</div><!-- end .wpmg_widget -->
 
-	   <?php			
+	   <?php
 	   echo $after_widget;
    }
 
-   function update($new_instance, $old_instance) {                
+   function update($new_instance, $old_instance) {
        return $new_instance;
    }
 
@@ -86,8 +86,8 @@ class wpmg_list extends WP_Widget {
         </p>
 
 		<?php
-	} 
- 
+	}
+
 } // end class wpmg_list
 add_action('widgets_init', create_function('', 'return register_widget("wpmg_list");'));
 ?>
