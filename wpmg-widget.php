@@ -7,15 +7,15 @@ Description: 	Alle deutschen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.1
-Tested up to: 	4.1
+Version:        0.2
+Tested up to: 	4.3
 
 License: 		GPL2
 */
 
 
 /*
-Copyright 2015 Frankfurt (wpfra.de) (e-mail: kontakt@wpfra.de)
+Copyright 2015 WP Meetup Frankfurt (wpfra.de) (e-mail: kontakt@wpfra.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
