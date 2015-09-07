@@ -7,12 +7,11 @@ Description: 	Alle deutschen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.1
-Tested up to: 	4.1
+Version:        0.2
+Tested up to: 	4.3
 
 License: 		GPL2
 */
-
 
 
 /*
@@ -35,59 +34,86 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class wpmg_list extends WP_Widget {
 
-	function wpmg_list() {
-		$widget_ops = array('description' => 'Liste deutscher WP Meetups' , 'wpmg-widget');
-
-		parent::WP_Widget(false, __('WP Meetups Germany', 'wpmg-widget'),$widget_ops);
+	public function __construct() {
+		$widget_ops = array( 'description' => __( 'Liste deutscher WP Meetups', 'wpmg-widget' ) );
+		parent::__construct( false, __( 'WP Meetups Germany', 'wpmg-widget' ), $widget_ops );
 	}
 
-	function widget($args, $instance) {  
+	public function get_meetups() {
+		$meetups = array(
+			'https://wpmeetup-berlin.de/' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
+			'http://wpmeetup-dresden.de/' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
+			'http://www.wpmeetup-eifel.de/' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
+			'http://wpmeetup-franken.de/' => array( 'title' => 'Franken', 'url' => 'http://wpmeetup-franken.de/' ),
+			'http://wpmeetup-frankfurt.de/' => array( 'title' => 'Frankfurt', 'url' => 'http://wpmeetup-frankfurt.de/' ),
+			'http://wpmeetup-hamburg.de/' => array( 'title' => 'Hamburg', 'url' => 'http://wpmeetup-hamburg.de/' ),
+			'http://www.wpmeetup-hannover.de/' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
+			'http://wpcgn.de/' => array( 'title' => 'Köln', 'url' => 'http://wpcgn.de/' ),
+			'http://wpmeetup-karlsruhe.de/' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
+			'http://wpmeetup-muenchen.org/' => array( 'title' => 'München', 'url' => 'http://wpmeetup-muenchen.org/' ),
+			'http://www.wpmeetup-osnabrueck.de/' => array( 'title' => 'Osnabrück/Münster/Emsland', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
+			'http://wpmeetup-potsdam.de/' => array( 'title' => 'Potsdam', 'url' => 'http://wpmeetup-potsdam.de/' ),
+			'http://wpmeetup-stuttgart.de/' => array( 'title' => 'Stuttgart', 'url' => 'http://wpmeetup-stuttgart.de/' ),
+		);
+
+		$siteurl = site_url();
+
+		if ( array_key_exists( $siteurl, $meetups ) ) {
+			unset( $meetups[ $siteurl ] );
+		}
+
+		return $meetups;
+	}
+
+	public function widget( $args, $instance ) {
 		extract( $args );
 		$title = $instance['title'];
-		
-		echo $before_widget; ?>
-		 <?php if ( $title )
-                        echo $before_title . $title . $after_title; ?>
 
-        <div class="wpmg_widget widget_nav_menu">
+		$meetups = $this->get_meetups();
+
+		echo $before_widget;
+
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
+
+		?>
+
+		<div class="wpmg_widget widget_nav_menu">
 			<ul class="menu">
-				<li class="menu-item"><a href="http://wpmeetup-potsdam.de/" title="WP Meetup Potsdam" target="_blank" rel="nofollow">Meetup Potsdam</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-berlin.de/" title="WP Meetup Berlin" target="_blank" rel="nofollow">Meetup Berlin</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-hamburg.de/" title="WP Meetup Hamburg" target="_blank" rel="nofollow">Meetup Hamburg</a></li>
-				<li class="menu-item"><a href="http://www.wpmeetup-hannover.de/" title="WP Meetup Hannover" target="_blank" rel="nofollow">Meetup Hannover</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-frankfurt.de/" title="WP Meetup Frankfurt" target="_blank" rel="nofollow">Meetup Frankfurt</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-franken.de/" title="WP Meetup Franken" target="_blank" rel="nofollow">Meetup Franken</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-stuttgart.de/" title="WP Meetup Stuttgart" target="_blank" rel="nofollow">Meetup Stuttgart</a></li>
-				<li class="menu-item"><a href="http://www.meetup.com/WordPress-Meetup-Koln/" title="WP Meetup Köln" target="_blank" rel="nofollow">Meetup Köln</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-muenchen.org/" title="WP Meetup München" target="_blank" rel="nofollow">Meetup München</a></li>
-				<li class="menu-item"><a href="http://www.wpmeetup-osnabrueck.de/" title="WP Meetup Osnabrück/Emsland" target="_blank" rel="nofollow">Meetup Osnabrück/Emsland</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-dresden.de/" title="WP Meetup Dresden" target="_blank" rel="nofollow">Meetup Dresden</a></li>
-				<li class="menu-item"><a href="http://www.wpmeetup-eifel.de/" title="WP Meetup Eifel" target="_blank" rel="nofollow">Meetup Eifel</a></li>
-				<li class="menu-item"><a href="http://wpmeetup-karlsruhe.de/" title="WP Meetup Karlsruhe" target="_blank" rel="nofollow">Meetup Karlsruhe</a></li>
+				<?php foreach ( $meetups as $meetup ) : ?>
+					<li class="menu-item">
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" target="_blank" rel="nofollow">WP Meetup <?php echo esc_attr( $meetup['title'] ); ?></a>
+					</li>
+				<?php endforeach; ?>
 			</ul>
 
 		</div><!-- end .wpmg_widget -->
 
-	   <?php			
-	   echo $after_widget;
-   }
+		<?php
 
-   function update($new_instance, $old_instance) {                
-       return $new_instance;
-   }
+		echo $after_widget;
+	}
 
-   function form($instance) {
-		$title = esc_attr($instance['title']);
+	function update( $new_instance, $old_instance ) {
+		return $new_instance;
+	}
+
+	function form( $instance ) {
+		$title = esc_attr( $instance['title'] );
 		?>
 
-		 <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Titel:','wpmg-widget'); ?></label>
-            <input type="text" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" />
-        </p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titel:', 'wpmg-widget' ); ?></label>
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+		</p>
 
 		<?php
-	} 
- 
+	}
+
 } // end class wpmg_list
-add_action('widgets_init', create_function('', 'return register_widget("wpmg_list");'));
-?>
+
+function wpmg_list_widget_init() {
+	register_widget( 'wpmg_list' );
+}
+add_action( 'widgets_init', 'wpmg_list_widget_init' );
