@@ -14,7 +14,6 @@ License: 		GPL2
 */
 
 
-
 /*
 Copyright 2015 Frankfurt (wpfra.de) (e-mail: kontakt@wpfra.de)
 
@@ -66,45 +65,55 @@ class wpmg_list extends WP_Widget {
 		return $meetups;
 	}
 
-	public function widget($args, $instance) {
+	public function widget( $args, $instance ) {
 		extract( $args );
 		$title = $instance['title'];
 
 		$meetups = $this->get_meetups();
 
-		echo $before_widget; ?>
-		 <?php if ( $title )
-                        echo $before_title . $title . $after_title; ?>
+		echo $before_widget;
 
-        <div class="wpmg_widget widget_nav_menu">
+		if ( $title ) {
+			echo $before_title . $title . $after_title;
+		}
+
+		?>
+
+		<div class="wpmg_widget widget_nav_menu">
 			<ul class="menu">
-			<?php foreach( $meetups as $meetup ) : ?>
-				<li class="menu-item"><a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" target="_blank" rel="nofollow">Meetup <?php echo esc_attr( $meetup['title'] ); ?></a></li>
-			<?php endforeach; ?>
+				<?php foreach ( $meetups as $meetup ) : ?>
+					<li class="menu-item">
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" target="_blank" rel="nofollow">WP Meetup <?php echo esc_attr( $meetup['title'] ); ?></a>
+					</li>
+				<?php endforeach; ?>
 			</ul>
 
 		</div><!-- end .wpmg_widget -->
 
-	   <?php
-	   echo $after_widget;
-   }
+		<?php
 
-   function update($new_instance, $old_instance) {
-       return $new_instance;
-   }
+		echo $after_widget;
+	}
 
-   function form($instance) {
-		$title = esc_attr($instance['title']);
+	function update( $new_instance, $old_instance ) {
+		return $new_instance;
+	}
+
+	function form( $instance ) {
+		$title = esc_attr( $instance['title'] );
 		?>
 
-		 <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Titel:','wpmg-widget'); ?></label>
-            <input type="text" name="<?php echo $this->get_field_name('title'); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id('title'); ?>" />
-        </p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titel:', 'wpmg-widget' ); ?></label>
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+		</p>
 
 		<?php
 	}
 
 } // end class wpmg_list
-add_action('widgets_init', create_function('', 'return register_widget("wpmg_list");'));
-?>
+
+function wpmg_list_widget_init() {
+	register_widget( 'wpmg_list' );
+}
+add_action( 'widgets_init', 'wpmg_list_widget_init' );
