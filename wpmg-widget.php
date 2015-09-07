@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name:	WP Meetups Germany
+Plugin Name:	WP Meetups deutschsprachig
 Plugin URI: 	https://github.com/wpFRA/wpmeetups-widget
-Description: 	Alle deutschen WP Meetups - in einem Widget.
+Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 
 Author:         wpFRA
 Author URI: 	https://wpfra.de
@@ -35,8 +35,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 class wpmg_list extends WP_Widget {
 
 	public function __construct() {
-		$widget_ops = array( 'description' => __( 'Liste deutscher WP Meetups', 'wpmg-widget' ) );
-		parent::__construct( false, __( 'WP Meetups Germany', 'wpmg-widget' ), $widget_ops );
+		$widget_ops = array( 'description' => __( 'Liste deutschsprachiger WP Meetups', 'wpmg-widget' ) );
+		parent::__construct( false, __( 'WP Meetups deutschsprachig', 'wpmg-widget' ), $widget_ops );
 	}
 
 	public function get_meetups() {
