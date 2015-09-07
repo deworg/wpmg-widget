@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name:	WP Meetups deutschsprachig
-Plugin URI: 	https://github.com/wpFRA/wpmeetups-widget
+Plugin URI: 	https://github.com/wpFRA/wpmg-widget
 Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 
 Author:         wpFRA
