@@ -1,16 +1,19 @@
 <?php
 /*
 Plugin Name:	WP Meetups deutschsprachig
-Plugin URI: 	https://github.com/wpFRA/wpmeetups-widget
+Plugin URI: 	https://github.com/wpFRA/wpmg-widget
 Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.2
+Version:        0.3
 Tested up to: 	4.3
 
 License: 		GPL2
+
+GitHub Plugin URI: https://github.com/wpFRA/wpmg-widget
+GitHub Branch: master
 */
 
 
@@ -42,6 +45,7 @@ class wpmg_list extends WP_Widget {
 	public function get_meetups() {
 		$meetups = array(
 			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
+			'http://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'http://wpbern.ch/' ),
 			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'http://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'http://wpmeetup-franken.de/' ),
@@ -56,6 +60,7 @@ class wpmg_list extends WP_Widget {
 			'http://wpmeetup-region38.de' => array( 'title' => 'Region 38', 'url' => 'http://wpmeetup-region38.de/' ),
 			'http://wpmeetup-rheinruhr.de' => array( 'title' => 'Rhein-Ruhr', 'url' => 'http://wpmeetup-rheinruhr.de/' ),
 			'http://wpmeetup-stuttgart.de' => array( 'title' => 'Stuttgart', 'url' => 'http://wpmeetup-stuttgart.de/' ),
+			'http://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'http://www.meetup.com/de/wordpress-zurich/' ),
 		);
 
 		$siteurl = site_url();
