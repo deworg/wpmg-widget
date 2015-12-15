@@ -7,8 +7,8 @@ Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.3
-Tested up to: 	4.3
+Version:        0.4
+Tested up to: 	4.4
 
 License: 		GPL2
 
@@ -49,17 +49,19 @@ class wpmg_list extends WP_Widget {
 			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'http://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'http://wpmeetup-franken.de/' ),
-			'http://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'http://wpmeetup-frankfurt.de/' ),
+			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'http://wpmeetup-frankfurt.de/' ),
 			'http://wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'http://wpmeetup-hamburg.de/' ),
 			'http://www.wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
 			'http://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'http://wpcgn.de/' ),
 			'http://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'http://wpmeetup-muenchen.org/' ),
 			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster/Emsland', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
+			'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg/' => array( 'title' => 'Ostbrandenburg', 'url' => 'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg//' ),
 			'http://wpmeetup-potsdam.de' => array( 'title' => 'Potsdam', 'url' => 'http://wpmeetup-potsdam.de/' ),
 			'http://wpmeetup-region38.de' => array( 'title' => 'Region 38', 'url' => 'http://wpmeetup-region38.de/' ),
 			'http://wpmeetup-rheinruhr.de' => array( 'title' => 'Rhein-Ruhr', 'url' => 'http://wpmeetup-rheinruhr.de/' ),
 			'http://wpmeetup-stuttgart.de' => array( 'title' => 'Stuttgart', 'url' => 'http://wpmeetup-stuttgart.de/' ),
+			'https://wpmeetup-thueringen.de' => array( 'title' => 'Thüringen', 'url' => 'https://wpmeetup-thueringen.de/' ),
 			'http://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'http://www.meetup.com/de/wordpress-zurich/' ),
 		);
 
