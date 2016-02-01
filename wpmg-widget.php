@@ -76,16 +76,14 @@ class wpmg_list extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
-		extract( $args );
-		$title = $instance['title'];
+
+		echo $args['before_widget'];
+
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
 
 		$meetups = $this->get_meetups();
-
-		echo $before_widget;
-
-		if ( $title ) {
-			echo $before_title . $title . $after_title;
-		}
 
 		?>
 
@@ -102,7 +100,7 @@ class wpmg_list extends WP_Widget {
 
 		<?php
 
-		echo $after_widget;
+		echo $args['after_widget'];
 	}
 
 	function update( $new_instance, $old_instance ) {
