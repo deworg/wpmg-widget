@@ -79,7 +79,6 @@ class wpmg_list extends WP_Widget {
 
 		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
 			'prefix' => 'WP Meetup ',
-			'filter_own' => true,
 			'link_atts' => array(
 				'target' => '',
 				'rel' => 'nofollow',
@@ -96,7 +95,7 @@ class wpmg_list extends WP_Widget {
 
 		$meetups = $this->get_meetups();
 
-		if ( $widget_args['filter_own'] ) {
+		if ( ! empty( $instance['filter_own'] ) ) {
 			$siteurl = site_url();
 
 			if ( array_key_exists( $siteurl, $meetups ) ) {
@@ -129,12 +128,18 @@ class wpmg_list extends WP_Widget {
 	}
 
 	function form( $instance ) {
-		$title = esc_attr( $instance['title'] );
+		$title = sanitize_text_field( $instance['title'] );
+		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titel:', 'wpmg-widget' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+		</p>
+
+		<p>
+			<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'filter_own' ); ?>" name="<?php echo $this->get_field_name( 'filter_own' ); ?>"<?php checked( $filter_own ); ?> />
+			<label for="<?php echo $this->get_field_id( 'filter_own' ); ?>"><?php _e( 'Eigenes Meetup rausfiltern', 'wpmg-widget' ); ?></label>
 		</p>
 
 		<?php
