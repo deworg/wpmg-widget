@@ -66,12 +66,6 @@ class wpmg_list extends WP_Widget {
 			'http://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'http://www.meetup.com/de/wordpress-zurich/' ),
 		);
 
-		$siteurl = site_url();
-
-		if ( array_key_exists( $siteurl, $meetups ) ) {
-			unset( $meetups[ $siteurl ] );
-		}
-
 		return $meetups;
 	}
 
@@ -83,7 +77,32 @@ class wpmg_list extends WP_Widget {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 
+		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
+			'prefix' => 'WP Meetup ',
+			'filter_own' => true,
+			'link_atts' => array(
+				'target' => '',
+				'rel' => 'nofollow',
+			)
+		) );
+
+		$link_atts = '';
+
+		foreach ( $widget_args['link_atts'] as $atts_key => $atts_value ) {
+			if (!empty($atts_value)){
+				$link_atts .= ' ' . esc_attr( $atts_key ) . '="' . esc_attr($atts_value) . '"';
+			}
+		}
+
 		$meetups = $this->get_meetups();
+
+		if ( $widget_args['filter_own'] ) {
+			$siteurl = site_url();
+
+			if ( array_key_exists( $siteurl, $meetups ) ) {
+				unset( $meetups[ $siteurl ] );
+			}
+		}
 
 		?>
 
@@ -91,7 +110,9 @@ class wpmg_list extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" target="_blank" rel="nofollow">WP Meetup <?php echo esc_attr( $meetup['title'] ); ?></a>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $widget_args['prefix'] . $meetup['title'] ); ?>" <?php echo $link_atts; ?>>
+							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
+						</a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
