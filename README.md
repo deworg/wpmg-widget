@@ -2,7 +2,7 @@
 * Contributors:      kau-boy, 00sleepy, krafit
 * Tags:              community, meetups
 * Requires at least: 4.0
-* Tested up to:      4.4
+* Tested up to:      4.4.2-RC2
 * Stable tag:        trunk
 * License:           GPLv2 or later
 * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ Mit den Daten von [wpmeetups.de](https://wpmeetups.de/meetup/) ermöglicht diese
 Um die Liste stets auf dem neuesten Stand zu halten nutzen wir aktuell noch das [Github Updater Plugin](https://github.com/afragen/github-updater).
 
 
-### Sprachend ###
+### Sprachen ###
 * German
 
 
