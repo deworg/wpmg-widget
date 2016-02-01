@@ -50,7 +50,7 @@ class wpmg_list extends WP_Widget {
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'http://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'http://wpmeetup-franken.de/' ),
 			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'http://wpmeetup-frankfurt.de/' ),
-			'http://wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'http://wpmeetup-hamburg.de/' ),
+			'https://wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'http://wpmeetup-hamburg.de/' ),
 			'http://www.wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
 			'http://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'http://wpcgn.de/' ),
