@@ -66,25 +66,41 @@ class wpmg_list extends WP_Widget {
 			'http://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'http://www.meetup.com/de/wordpress-zurich/' ),
 		);
 
-		$siteurl = site_url();
-
-		if ( array_key_exists( $siteurl, $meetups ) ) {
-			unset( $meetups[ $siteurl ] );
-		}
-
 		return $meetups;
 	}
 
 	public function widget( $args, $instance ) {
-		extract( $args );
-		$title = $instance['title'];
+
+		echo $args['before_widget'];
+
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
+
+		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
+			'prefix' => 'WP Meetup ',
+			'link_atts' => array(
+				'target' => '',
+				'rel' => 'nofollow',
+			)
+		) );
+
+		$link_atts = '';
+
+		foreach ( $widget_args['link_atts'] as $atts_key => $atts_value ) {
+			if (!empty($atts_value)){
+				$link_atts .= ' ' . esc_attr( $atts_key ) . '="' . esc_attr($atts_value) . '"';
+			}
+		}
 
 		$meetups = $this->get_meetups();
 
-		echo $before_widget;
+		if ( ! empty( $instance['filter_own'] ) ) {
+			$siteurl = site_url();
 
-		if ( $title ) {
-			echo $before_title . $title . $after_title;
+			if ( array_key_exists( $siteurl, $meetups ) ) {
+				unset( $meetups[ $siteurl ] );
+			}
 		}
 
 		?>
@@ -93,7 +109,9 @@ class wpmg_list extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" target="_blank" rel="nofollow">WP Meetup <?php echo esc_attr( $meetup['title'] ); ?></a>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $widget_args['prefix'] . $meetup['title'] ); ?>" <?php echo $link_atts; ?>>
+							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
+						</a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
@@ -102,7 +120,7 @@ class wpmg_list extends WP_Widget {
 
 		<?php
 
-		echo $after_widget;
+		echo $args['after_widget'];
 	}
 
 	function update( $new_instance, $old_instance ) {
@@ -110,12 +128,18 @@ class wpmg_list extends WP_Widget {
 	}
 
 	function form( $instance ) {
-		$title = esc_attr( $instance['title'] );
+		$title = sanitize_text_field( $instance['title'] );
+		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titel:', 'wpmg-widget' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $title; ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+		</p>
+
+		<p>
+			<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'filter_own' ); ?>" name="<?php echo $this->get_field_name( 'filter_own' ); ?>"<?php checked( $filter_own ); ?> />
+			<label for="<?php echo $this->get_field_id( 'filter_own' ); ?>"><?php _e( 'Eigenes Meetup rausfiltern', 'wpmg-widget' ); ?></label>
 		</p>
 
 		<?php
