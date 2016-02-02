@@ -7,7 +7,7 @@ Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.4.1
+Version:        0.4.2
 Tested up to: 	4.4.2-RC2
 
 License: 		GPL2
@@ -109,7 +109,7 @@ class wpmg_list extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $widget_args['prefix'] . $meetup['title'] ); ?>" <?php echo $link_atts; ?>>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; ?>>
 							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
 						</a>
 					</li>
