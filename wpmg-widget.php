@@ -8,7 +8,7 @@ Author:         wpFRA
 Author URI: 	https://wpfra.de
 
 Version:        0.4.2
-Tested up to: 	4.4.2-RC2
+Tested up to: 	4.5 beta3
 
 License: 		GPL2
 
