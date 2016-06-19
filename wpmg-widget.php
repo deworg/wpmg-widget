@@ -46,6 +46,7 @@ class wpmg_list extends WP_Widget {
 		$meetups = array(
 			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
 			'https://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'https://wpbern.ch/' ),
+			'http://wpmeetup-bremen.de' => array( 'title' => 'Bremen', 'url' => 'http://wpmeetup-bremen.de/' ),
 			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
@@ -54,6 +55,7 @@ class wpmg_list extends WP_Widget {
 			'http://www.wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
 			'http://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'http://wpcgn.de/' ),
+			'http://www.meetup.com/de-DE/Leipzig-WordPress-Meetup/' => array( 'title' => 'Leipzig', 'url' => 'http://www.meetup.com/de-DE/Leipzig-WordPress-Meetup/' ),
 			'http://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'http://wpmeetup-muenchen.org/' ),
 			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster/Emsland', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
 			'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg/' => array( 'title' => 'Ostbrandenburg', 'url' => 'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg//' ),
