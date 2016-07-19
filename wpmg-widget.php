@@ -7,8 +7,8 @@ Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.4.3
-Tested up to: 	4.5 beta3
+Version:        0.4.4
+Tested up to: 	4.5
 
 License: 		GPL2
 
@@ -51,7 +51,7 @@ class wpmg_list extends WP_Widget {
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
 			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
-			'https://wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'https://wpmeetup-hamburg.de/' ),
+			'https://www.wpmeetup-hamburg.de/' => array( 'title' => 'Hamburg', 'url' => 'https://wpmeetup-hamburg.de/' ),
 			'http://www.wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
 			'http://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'http://wpcgn.de/' ),
