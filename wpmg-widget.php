@@ -1,18 +1,18 @@
 <?php
 /*
 Plugin Name:	WP Meetups deutschsprachig
-Plugin URI: 	https://github.com/wpFRA/wpmg-widget
+Plugin URI: 	https://github.com/deworg/wpmg-widget
 Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.4.5
-Tested up to: 	4.6.1
+Version:        0.4.6
+Tested up to: 	4.7.2
 
 License: 		GPL2
 
-GitHub Plugin URI: https://github.com/wpFRA/wpmg-widget
+GitHub Plugin URI: https://github.com/deworg/wpmg-widget
 GitHub Branch: master
 */
 
