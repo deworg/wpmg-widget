@@ -58,7 +58,6 @@ class wpmg_list extends WP_Widget {
 			'https://wpmeetupleipzig.wordpress.com' => array( 'title' => 'Leipzig', 'url' => 'https://wpmeetupleipzig.wordpress.com' ),
 			'https://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'https://wpmeetup-muenchen.org/' ),
 			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster/Emsland', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
-			'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg/' => array( 'title' => 'Ostbrandenburg', 'url' => 'http://www.meetup.com/de/WordPress-Meetup-Ostbrandenburg//' ),
 			'https://wpmeetup-paderborn.de' => array( 'title' => 'Paderborn', 'url' => 'https://wpmeetup-paderborn.de/' ),
 			'https://wpmeetup-potsdam.de' => array( 'title' => 'Potsdam', 'url' => 'https://wpmeetup-potsdam.de/' ),
 			'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38/' => array( 'title' => 'Region 38', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38//' ),
