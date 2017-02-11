@@ -44,10 +44,12 @@ class wpmg_list extends WP_Widget {
 
 	public function get_meetups() {
 		$meetups = array(
+			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array( 'title' => 'Aachen', 'url' => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' ),
 			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
 			'https://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'https://wpbern.ch/' ),
 			'https://wpmeetup-bremen.de' => array( 'title' => 'Bremen', 'url' => 'https://wpmeetup-bremen.de/' ),
 			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
+			'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' => array( 'title' => 'Düsseldorf', 'url' => 'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup//' ),
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
 			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
