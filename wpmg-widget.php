@@ -55,7 +55,7 @@ class wpmg_list extends WP_Widget {
 			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
 			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
 			'https://www.wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'https://www.wpmeetup-hamburg.de/' ),
-			'http://www.wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://www.wpmeetup-hannover.de/' ),
+			'http://wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
 			'https://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'https://wpcgn.de/' ),
 			'https://wpmeetupleipzig.wordpress.com' => array( 'title' => 'Leipzig', 'url' => 'https://wpmeetupleipzig.wordpress.com' ),
@@ -66,9 +66,8 @@ class wpmg_list extends WP_Widget {
 			'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38/' => array( 'title' => 'Region 38', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38//' ),
 			'https://wpmeetup.saarland' => array( 'title' => 'Saarland', 'url' => 'https://wpmeetup.saarland/' ),
 			'https://wpmeetupstuttgart.de' => array( 'title' => 'Stuttgart', 'url' => 'https://wpmeetupstuttgart.de/' ),
-			'https://wpmeetup-thueringen.de' => array( 'title' => 'Thüringen', 'url' => 'https://wpmeetup-thueringen.de/' ),
 			'https://wpmeetup-wuerzburg.de' => array( 'title' => 'Würzburg', 'url' => 'https://wpmeetup-wuerzburg.de/' ),
-			'http://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'http://www.meetup.com/de/wordpress-zurich/' ),
+			'https://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'https://www.meetup.com/de/wordpress-zurich/' ),
 		);
 
 		return $meetups;
