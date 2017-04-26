@@ -47,6 +47,7 @@ class wpmg_list extends WP_Widget {
 			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array( 'title' => 'Aachen', 'url' => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' ),
 			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
 			'https://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'https://wpbern.ch/' ),
+			'https://www.wpbn.de' => array( 'title' => 'Bonn', 'url' => 'https://www.wpbn.de' ),
 			'https://wpmeetup-bremen.de' => array( 'title' => 'Bremen', 'url' => 'https://wpmeetup-bremen.de/' ),
 			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
 			'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' => array( 'title' => 'Düsseldorf', 'url' => 'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup//' ),
