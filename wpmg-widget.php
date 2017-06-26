@@ -7,8 +7,8 @@ Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
 Author:         wpFRA
 Author URI: 	https://wpfra.de
 
-Version:        0.4.7
-Tested up to: 	4.7
+Version:        0.4.8
+Tested up to: 	4.8
 
 License: 		GPL2
 
