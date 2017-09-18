@@ -1,28 +1,30 @@
 <?php
-/*
-Plugin Name:	WP Meetups deutschsprachig
-Plugin URI: 	https://github.com/deworg/wpmg-widget
-Description: 	Alle deutschsprachigen WP Meetups - in einem Widget.
-
-Author:         wpFRA
-Author URI: 	https://wpfra.de
-
-Version:        0.4.8
-Tested up to: 	4.8
-
-License: 		GPL2
-
-GitHub Plugin URI: https://github.com/deworg/wpmg-widget
-GitHub Branch: master
-*/
-
+/**
+ * WPMeetups Widget deutschsprachig
+ *
+ * @package     2ndkauboy
+ * @author      wpFRA
+ * @license     GPLv2 or later
+ *
+ * @wordpress-plugin
+ * Plugin Name: WPMeetups Widget deutschsprachig
+ * Plugin URI: https://github.com/deworg/wpmg-widget
+ * Description: Alle deutschsprachigen WP Meetups - in einem Widget.
+ * Version: 0.4.9
+ * Tested up to: 4.8
+ * Author: wpFRA
+ * Author URI: https://wpfra.de
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 /*
 Copyright 2015 WP Meetup Frankfurt (wpfra.de) (e-mail: kontakt@wpfra.de)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
-published by the Free Software Foundation.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,17 +33,27 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+/**
+ * Class WPMeetupListWidget
+ */
+class WPMeetupListWidget extends WP_Widget {
 
-class wpmg_list extends WP_Widget {
-
+	/**
+	 * WPMeetupListWidget constructor.
+	 */
 	public function __construct() {
-		$widget_ops = array( 'description' => __( 'Liste deutschsprachiger WP Meetups', 'wpmg-widget' ) );
+		$widget_ops = array( 'description' => __( 'List of German speaking WP meetups', 'wpmg-widget' ) );
 		parent::__construct( false, __( 'WP Meetups deutschsprachig', 'wpmg-widget' ), $widget_ops );
 	}
 
+	/**
+	 * Defines the array of all current German speaking meetups.
+	 *
+	 * @return array
+	 */
 	public function get_meetups() {
 		$meetups = array(
 			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array( 'title' => 'Aachen', 'url' => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' ),
@@ -74,27 +86,33 @@ class wpmg_list extends WP_Widget {
 		return $meetups;
 	}
 
+	/**
+	 * Renders the widget.
+	 *
+	 * @param array $args The widget arguments.
+	 * @param array $instance The widget instance.
+	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget'];
+		echo $args['before_widget']; // WPCS: XSS okay.
 
 		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // WPCS: XSS okay.
 		}
 
 		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
-			'prefix' => 'WP Meetup ',
+			'prefix'    => 'WP Meetup ',
 			'link_atts' => array(
 				'target' => '',
-				'rel' => 'nofollow',
-			)
+				'rel'    => 'nofollow',
+			),
 		) );
 
 		$link_atts = '';
 
 		foreach ( $widget_args['link_atts'] as $atts_key => $atts_value ) {
-			if (!empty($atts_value)){
-				$link_atts .= ' ' . esc_attr( $atts_key ) . '="' . esc_attr($atts_value) . '"';
+			if ( ! empty( $atts_value ) ) {
+				$link_atts .= ' ' . esc_attr( $atts_key ) . '="' . esc_attr( $atts_value ) . '"';
 			}
 		}
 
@@ -114,7 +132,7 @@ class wpmg_list extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; ?>>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
 							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
 						</a>
 					</li>
@@ -125,26 +143,41 @@ class wpmg_list extends WP_Widget {
 
 		<?php
 
-		echo $args['after_widget'];
+		echo $args['after_widget']; // WPCS: XSS okay.
 	}
 
+	/**
+	 * Saves the changes and returns the new instance of the widget.
+	 *
+	 * @param array $new_instance The new widget instance.
+	 * @param array $old_instance The olf widget instance.
+	 *
+	 * @return array
+	 */
 	function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
 
+	/**
+	 * Renders the backend form of the widget.
+	 *
+	 * @param array $instance The new instance of the widget.
+	 *
+	 * @return void
+	 */
 	function form( $instance ) {
 		$title = sanitize_text_field( $instance['title'] );
 		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Titel:', 'wpmg-widget' ); ?></label>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
+			<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" />
 		</p>
 
 		<p>
-			<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'filter_own' ); ?>" name="<?php echo $this->get_field_name( 'filter_own' ); ?>"<?php checked( $filter_own ); ?> />
-			<label for="<?php echo $this->get_field_id( 'filter_own' ); ?>"><?php _e( 'Eigenes Meetup rausfiltern', 'wpmg-widget' ); ?></label>
+			<input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
 		</p>
 
 		<?php
@@ -152,7 +185,10 @@ class wpmg_list extends WP_Widget {
 
 } // end class wpmg_list
 
-function wpmg_list_widget_init() {
-	register_widget( 'wpmg_list' );
+/**
+ * Initializes the plugin.
+ */
+function wpmeetup_list_widget_init() {
+	register_widget( 'WPMeetupListWidget' );
 }
-add_action( 'widgets_init', 'wpmg_list_widget_init' );
+add_action( 'widgets_init', 'wpmeetup_list_widget_init' );
