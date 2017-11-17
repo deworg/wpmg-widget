@@ -66,6 +66,7 @@ class WPMeetupListWidget extends WP_Widget {
 			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
 			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
 			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
+			'https://www.meetup.com/WordPress-Meetup-Fulda/' => array( 'title' => 'Fulda', 'url' => 'https://www.meetup.com/WordPress-Meetup-Fulda//' ),
 			'https://www.wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'https://www.wpmeetup-hamburg.de/' ),
 			'http://wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://wpmeetup-hannover.de/' ),
 			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
