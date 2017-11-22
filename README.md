@@ -1,36 +1,23 @@
-# WPMG Widget #
+# WPMeetup Widget deutschsprachig #
 * Contributors:      kau-boy, 00sleepy, krafit
 * Tags:              community, meetups
 * Requires at least: 4.0
-* Tested up to:      4.8
+* Tested up to:      4.9
 * Stable tag:        trunk
 * License:           GPLv2 or later
 * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
+List of all German speaking WordPress meetups as a widget.
 
-Liste der deutschsprachigen WordPress Meetups als Widget.
+## Description ##
 
+The WordPress community in Germany, Austria and Switzerland has changed and grown a lot in the past few years.
+To maintain a current list of all active meetups can be a lot of work for every individual meetup and takes a lot of time.
+With the data from [wpmeetups.de](https://wpmeetups.de/meetup/), this plugins enables any WordPress meetup to include a small
+widget into their sites, with a current list of all active meetup in the German speaking community.
 
-## Beschreibung ##
-
-Die WP Meetup Szene in Deutschland, Österreich und der Schweiz hat sich in den vergangenen Jahren stark verändert und ist vor allem gewachsen. 
-Eine Liste aller aktiver Meetups zu pflegen kann also bisweilen aufwändig sein und vor allem unnötig Zeit kosten.
-
-Mit den Daten von [wpmeetups.de](https://wpmeetups.de/meetup/) ermöglicht dieses Plugin das Einbinden eines einfachen Widgets mit Links zu allen aktuell aktiven Meetups in D-A-CH. 
-Um die Liste stets auf dem neuesten Stand zu halten nutzen wir aktuell noch das [Github Updater Plugin](https://github.com/afragen/github-updater).
-
-
-### Sprachen ###
+### Languages ###
 * German
-
 
 ### Credits ###
 * Authors: [Bernhard Kau](https://profiles.wordpress.org/kau-boy), [Thomas Brühl ](https://profiles.wordpress.org/00sleepy), [Simon Kraft](https://profiles.wordpress.org/krafit)
-
-
-## Installation ##
-
-* Github Repo als ZIP [runterladen](https://github.com/wpFRA/wpmg-widget/archive/master.zip)
-* via FTP oder über das Backend in WordPress hochladen
-* Plugin aktivieren
-* Widget in beliebigem Widgetbereich platzieren
