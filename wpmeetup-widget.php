@@ -74,6 +74,7 @@ class WPMeetupListWidget extends WP_Widget {
 			'https://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'https://wpcgn.de/' ),
 			'https://wpmeetupleipzig.wordpress.com' => array( 'title' => 'Leipzig', 'url' => 'https://wpmeetupleipzig.wordpress.com' ),
 			'https://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'https://wpmeetup-muenchen.org/' ),
+			'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' => array( 'title' => 'Neustadt', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt//' ),
 			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
 			'https://wpmeetup-paderborn.de' => array( 'title' => 'Paderborn', 'url' => 'https://wpmeetup-paderborn.de/' ),
 			'https://wpmeetup-potsdam.de' => array( 'title' => 'Potsdam', 'url' => 'https://wpmeetup-potsdam.de/' ),
