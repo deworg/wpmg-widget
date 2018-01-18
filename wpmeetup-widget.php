@@ -10,7 +10,7 @@
  * Plugin Name: WPMeetups Widget deutschsprachig
  * Plugin URI: https://github.com/deworg/wpmg-widget
  * Description: Alle deutschsprachigen WP Meetups - in einem Widget.
- * Version: 0.5.1
+ * Version: 0.5.2
  * Tested up to: 4.9
  * Author: wpFRA
  * Author URI: https://wpfra.de
@@ -73,6 +73,7 @@ class WPMeetupListWidget extends WP_Widget {
 			'https://wpkoblenz.de' => array( 'title' => 'Koblenz', 'url' => 'https://wpkoblenz.de' ),
 			'https://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'https://wpcgn.de/' ),
 			'https://wpmeetupleipzig.wordpress.com' => array( 'title' => 'Leipzig', 'url' => 'https://wpmeetupleipzig.wordpress.com' ),
+			'https://wpmeetup-mannheim.de' => array( 'title' => 'Mannheim', 'url' => 'https://wpmeetup-mannheim.de/' ),
 			'https://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'https://wpmeetup-muenchen.org/' ),
 			'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' => array( 'title' => 'Neustadt', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt//' ),
 			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
