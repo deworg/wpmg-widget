@@ -55,38 +55,25 @@ class WPMeetupListWidget extends WP_Widget {
 	 * @return array
 	 */
 	public function get_meetups() {
-		$meetups = array(
-			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array( 'title' => 'Aachen', 'url' => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' ),
-			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
-			'https://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'https://wpbern.ch/' ),
-			'https://www.wpbn.de' => array( 'title' => 'Bonn', 'url' => 'https://www.wpbn.de' ),
-			'https://wpmeetup-bremen.de' => array( 'title' => 'Bremen', 'url' => 'https://wpmeetup-bremen.de/' ),
-			'http://wpmeetup-dresden.de' => array( 'title' => 'Dresden', 'url' => 'http://wpmeetup-dresden.de/' ),
-			'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' => array( 'title' => 'Düsseldorf', 'url' => 'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' ),
-			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
-			'https://wpmeetup-franken.de' => array( 'title' => 'Franken', 'url' => 'https://wpmeetup-franken.de/' ),
-			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
-			'https://www.meetup.com/WordPress-Meetup-Fulda/' => array( 'title' => 'Fulda', 'url' => 'https://www.meetup.com/WordPress-Meetup-Fulda//' ),
-			'https://www.wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'https://www.wpmeetup-hamburg.de/' ),
-			'http://wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://wpmeetup-hannover.de/' ),
-			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
-			'https://wpkoblenz.de' => array( 'title' => 'Koblenz', 'url' => 'https://wpkoblenz.de' ),
-			'https://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'https://wpcgn.de/' ),
-			'https://wpmeetupleipzig.wordpress.com' => array( 'title' => 'Leipzig', 'url' => 'https://wpmeetupleipzig.wordpress.com' ),
-			'https://wpmeetup-mannheim.de' => array( 'title' => 'Mannheim', 'url' => 'https://wpmeetup-mannheim.de/' ),
-			'https://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'https://wpmeetup-muenchen.org/' ),
-			'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' => array( 'title' => 'Neustadt', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt//' ),
-			'http://www.wpmeetup-osnabrueck.de' => array( 'title' => 'Osnabrück/Münster', 'url' => 'http://www.wpmeetup-osnabrueck.de/' ),
-			'https://wpmeetup-paderborn.de' => array( 'title' => 'Paderborn', 'url' => 'https://wpmeetup-paderborn.de/' ),
-			'https://wpmeetup-potsdam.de' => array( 'title' => 'Potsdam', 'url' => 'https://wpmeetup-potsdam.de/' ),
-			'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38/' => array( 'title' => 'Region 38', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Region-38/' ),
-			'https://www.wpmeetup-rostock.de' => array( 'title' => 'Rostock', 'url' => 'https://www.wpmeetup-rostock.de/' ),
-			'https://wpmeetup.saarland' => array( 'title' => 'Saarland', 'url' => 'https://wpmeetup.saarland/' ),
-			'https://wpmeetupstuttgart.de' => array( 'title' => 'Stuttgart', 'url' => 'https://wpmeetupstuttgart.de/' ),
-			'https://wpmeetup-wuerzburg.de' => array( 'title' => 'Würzburg', 'url' => 'https://wpmeetup-wuerzburg.de/' ),
-			'https://wpvienna.com' => array( 'title' => 'Wien', 'url' => 'https://wpvienna.com/' ),
-			'https://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'https://www.meetup.com/de/wordpress-zurich/' ),
-		);
+		$meetups = [];
+
+		$api_data = get_transient( 'wpmg_wpmeetup_meetups' );
+
+		if ( false === $api_data ) {
+			$api_request  = 'https://wpmeetups.de/wp-json/wp/v2/meetup/?per_page=100&orderby=title&order=asc';
+			$api_response = wp_remote_get( $api_request );
+			$api_data     = json_decode( wp_remote_retrieve_body( $api_response ), true );
+			set_transient( 'wpmg_wpmeetup_meetups', $api_data, DAY_IN_SECONDS );
+		}
+
+		foreach ( $api_data as $meetup ) {
+			if ( ! empty( $meetup['homepage'] ) ) {
+				$meetups[$meetup['title']['rendered']] = [
+					'title' => $meetup['title']['rendered'],
+					'url'   => $meetup['homepage'],
+				];
+			}
+		}
 
 		return $meetups;
 	}
@@ -106,7 +93,6 @@ class WPMeetupListWidget extends WP_Widget {
 		}
 
 		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
-			'prefix'    => 'WP Meetup ',
 			'link_atts' => array(
 				'target' => '',
 				'rel'    => 'nofollow',
@@ -133,18 +119,19 @@ class WPMeetupListWidget extends WP_Widget {
 
 		?>
 
-		<div class="wpmg_widget widget_nav_menu">
-			<ul class="menu">
+        <div class="wpmg_widget widget_nav_menu">
+            <ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
-					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
-							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
-						</a>
-					</li>
+                    <li class="menu-item">
+                        <a href="<?php echo esc_attr( $meetup['url'] ); ?>"
+                           title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
+							<?php echo esc_html( $meetup['title'] ); ?>
+                        </a>
+                    </li>
 				<?php endforeach; ?>
-			</ul>
+            </ul>
 
-		</div><!-- end .wpmg_widget -->
+        </div><!-- end .wpmg_widget -->
 
 		<?php
 
@@ -171,19 +158,22 @@ class WPMeetupListWidget extends WP_Widget {
 	 * @return void
 	 */
 	function form( $instance ) {
-		$title = sanitize_text_field( $instance['title'] );
+		$title      = sanitize_text_field( $instance['title'] );
 		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
-		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
-			<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" />
-		</p>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
+            <input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
+                   value="<?php echo esc_attr( $title ); ?>" class="widefat"
+                   id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"/>
+        </p>
 
-		<p>
-			<input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
-			<label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
-		</p>
+        <p>
+            <input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"
+                   name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
+            <label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
+        </p>
 
 		<?php
 	}
@@ -196,4 +186,5 @@ class WPMeetupListWidget extends WP_Widget {
 function wpmeetup_list_widget_init() {
 	register_widget( 'WPMeetupListWidget' );
 }
+
 add_action( 'widgets_init', 'wpmeetup_list_widget_init' );
