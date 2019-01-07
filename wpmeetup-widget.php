@@ -68,10 +68,10 @@ class WPMeetupListWidget extends WP_Widget {
 
 		foreach ( $api_data as $meetup ) {
 			if ( ! empty( $meetup['homepage'] ) ) {
-				$meetups[$meetup['title']['rendered']] = [
+				$meetups[ $meetup['title']['rendered'] ] = array(
 					'title' => $meetup['title']['rendered'],
 					'url'   => $meetup['homepage'],
-				];
+				);
 			}
 		}
 
@@ -92,12 +92,15 @@ class WPMeetupListWidget extends WP_Widget {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // WPCS: XSS okay.
 		}
 
-		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
-			'link_atts' => array(
-				'target' => '',
-				'rel'    => 'nofollow',
-			),
-		) );
+		$widget_args = apply_filters(
+			'wpmg_list_widget_args',
+			array(
+				'link_atts' => array(
+					'target' => '',
+					'rel'    => 'nofollow',
+				),
+			)
+		);
 
 		$link_atts = '';
 
@@ -119,19 +122,18 @@ class WPMeetupListWidget extends WP_Widget {
 
 		?>
 
-        <div class="wpmg_widget widget_nav_menu">
-            <ul class="menu">
+		<div class="wpmg_widget widget_nav_menu">
+			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
-                    <li class="menu-item">
-                        <a href="<?php echo esc_attr( $meetup['url'] ); ?>"
-                           title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
+					<li class="menu-item">
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
 							<?php echo esc_html( $meetup['title'] ); ?>
-                        </a>
-                    </li>
+						</a>
+					</li>
 				<?php endforeach; ?>
-            </ul>
+			</ul>
 
-        </div><!-- end .wpmg_widget -->
+		</div><!-- end .wpmg_widget -->
 
 		<?php
 
@@ -146,7 +148,7 @@ class WPMeetupListWidget extends WP_Widget {
 	 *
 	 * @return array
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
 
@@ -157,23 +159,20 @@ class WPMeetupListWidget extends WP_Widget {
 	 *
 	 * @return void
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
 		$title      = sanitize_text_field( $instance['title'] );
 		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
-        <p>
-            <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
-            <input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>"
-                   value="<?php echo esc_attr( $title ); ?>" class="widefat"
-                   id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"/>
-        </p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
+			<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"/>
+		</p>
 
-        <p>
-            <input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"
-                   name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
-            <label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
-        </p>
+		<p>
+			<input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
+			<label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
+		</p>
 
 		<?php
 	}
