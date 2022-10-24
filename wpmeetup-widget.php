@@ -63,8 +63,14 @@ class WPMeetupListWidget extends WP_Widget {
 		if ( false === $api_data ) {
 			$api_request  = 'https://wpmeetups.de/wp-json/wp/v2/meetup/?per_page=100&orderby=title&order=asc';
 			$api_response = wp_remote_get( $api_request );
-			$api_data     = json_decode( wp_remote_retrieve_body( $api_response ), true );
-			set_transient( 'wpmg_wpmeetup_meetups', $api_data, DAY_IN_SECONDS );
+			$api_code     = wp_remote_retrieve_response_code( $api_response );
+			if ( 200 !== $api_code ) {
+				return;
+			}
+			$api_data = json_decode( wp_remote_retrieve_body( $api_response ), true );
+			if ( ! empty( $api_data ) ) {
+				set_transient( 'wpmg_wpmeetup_meetups', $api_data, DAY_IN_SECONDS );
+			}
 		}
 
 		foreach ( $api_data as $meetup ) {
