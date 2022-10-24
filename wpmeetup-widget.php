@@ -11,7 +11,6 @@
  * Plugin URI: https://github.com/deworg/wpmg-widget
  * Description: Alle deutschsprachigen WP Meetups - in einem Widget.
  * Version: 0.5.2
- * Tested up to: 4.9
  * Author: wpFRA
  * Author URI: https://wpfra.de
  * License: GPLv2 or later
