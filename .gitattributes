@@ -1,0 +1,7 @@
+# Auto-detect text files, ensure they use LF.
+* text=auto eol=lf
+
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.wordpress-org export-ignore
