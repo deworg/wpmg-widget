@@ -14,6 +14,7 @@
  * Tested up to: 4.9
  * Author: wpFRA
  * Author URI: https://wpfra.de
+ * Text Domain: wpmeetup-widget
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -45,8 +46,8 @@ class WPMeetupListWidget extends WP_Widget {
 	 * WPMeetupListWidget constructor.
 	 */
 	public function __construct() {
-		$widget_ops = array( 'description' => __( 'List of German speaking WP meetups', 'wpmg-widget' ) );
-		parent::__construct( false, __( 'WP Meetups deutschsprachig', 'wpmg-widget' ), $widget_ops );
+		$widget_ops = array( 'description' => __( 'List of German speaking WP meetups', 'wpmeetup-widget' ) );
+		parent::__construct( false, __( 'WP Meetups deutschsprachig', 'wpmeetup-widget' ), $widget_ops );
 	}
 
 	/**
@@ -165,13 +166,13 @@ class WPMeetupListWidget extends WP_Widget {
 		?>
 
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmg-widget' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wpmeetup-widget' ); ?></label>
 			<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" value="<?php echo esc_attr( $title ); ?>" class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"/>
 		</p>
 
 		<p>
 			<input type="checkbox" class="checkbox" id="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter_own' ) ); ?>"<?php checked( $filter_own ); ?> />
-			<label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmg-widget' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'filter_own' ) ); ?>"><?php esc_html_e( 'Filter own meetup', 'wpmeetup-widget' ); ?></label>
 		</p>
 
 		<?php
