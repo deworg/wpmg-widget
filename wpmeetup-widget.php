@@ -56,35 +56,122 @@ class WPMeetupListWidget extends WP_Widget {
 	 */
 	public function get_meetups() {
 		$meetups = array(
-			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array( 'title' => 'Aachen', 'url' => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' ),
-			'https://wpmeetup-berlin.de' => array( 'title' => 'Berlin', 'url' => 'https://wpmeetup-berlin.de/' ),
-			'https://wpbern.ch' => array( 'title' => 'Bern', 'url' => 'https://wpbern.ch/' ),
-			'https://www.wpbn.de' => array( 'title' => 'Bonn', 'url' => 'https://www.wpbn.de' ),
-			'https://www.meetup.com/de-DE/bremen-wordpress-meetup-group/' => array( 'title' => 'Bremen', 'url' => 'https://www.meetup.com/de-DE/bremen-wordpress-meetup-group/' ),
-			'https://wpdrs.de' => array( 'title' => 'Dresden', 'url' => 'https://wpdrs.de/' ),
-			'https://www.meetup.com/de-DE/wordpress-meetup-dortmund/' => array( 'title' => 'Dortmund', 'url' => 'https://www.meetup.com/de-DE/wordpress-meetup-dortmund/' ),
-			'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' => array( 'title' => 'Düsseldorf', 'url' => 'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' ),
-			'http://www.wpmeetup-eifel.de' => array( 'title' => 'Eifel', 'url' => 'http://www.wpmeetup-eifel.de/' ),
-			'https://wpmeetup-frankfurt.de' => array( 'title' => 'Frankfurt', 'url' => 'https://wpmeetup-frankfurt.de/' ),
-			'https://www.wpmeetup-hamburg.de' => array( 'title' => 'Hamburg', 'url' => 'https://www.wpmeetup-hamburg.de/' ),
-			'http://wpmeetup-hannover.de' => array( 'title' => 'Hannover', 'url' => 'http://wpmeetup-hannover.de/' ),
-			'https://wpjena.de' => array( 'title' => 'Jena', 'url' => 'https://wpjena.de/' ),
-			'http://wpmeetup-karlsruhe.de' => array( 'title' => 'Karlsruhe', 'url' => 'http://wpmeetup-karlsruhe.de/' ),
-			'https://wpkoblenz.de' => array( 'title' => 'Koblenz', 'url' => 'https://wpkoblenz.de' ),
-			'https://wpcgn.de' => array( 'title' => 'Köln', 'url' => 'https://wpcgn.de/' ),
-			'https://www.meetup.com/de-DE/leipzig-wordpress-meetup/' => array( 'title' => 'Leipzig', 'url' => 'https://www.meetup.com/de-DE/leipzig-wordpress-meetup/' ),
-			'https://wpmeetup-mannheim.de' => array( 'title' => 'Mannheim', 'url' => 'https://wpmeetup-mannheim.de/' ),
-			'https://wpmeetup-muenchen.org' => array( 'title' => 'München', 'url' => 'https://wpmeetup-muenchen.org/' ),
-			'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' => array( 'title' => 'Neustadt', 'url' => 'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' ),
-			'https://wpmeetup-nuernberg.de' => array( 'title' => 'Nürnberg', 'url' => 'https://wpmeetup-nuernberg.de/' ),
-			'https://www.meetup.com/de-DE/wpmeetup-muenster-osnabrueck/' => array( 'title' => 'Osnabrück/Münster', 'url' => 'https://www.meetup.com/de-DE/wpmeetup-muenster-osnabrueck/' ),
-			'https://www.meetup.com/de-DE/wp-meetup-paderborn/' => array( 'title' => 'Paderborn', 'url' => 'https://www.meetup.com/de-DE/wp-meetup-paderborn/' ),
-			'https://wpmeetup-potsdam.de' => array( 'title' => 'Potsdam', 'url' => 'https://wpmeetup-potsdam.de/' ),
-			'https://www.wpmeetup-rostock.de' => array( 'title' => 'Rostock', 'url' => 'https://www.wpmeetup-rostock.de/' ),
-			'https://www.meetup.com/de-DE/wordpress-meetup-saarland/' => array( 'title' => 'Saarland', 'url' => 'https://www.meetup.com/de-DE/wordpress-meetup-saarland/' ),
-			'https://wpmeetupstuttgart.de' => array( 'title' => 'Stuttgart', 'url' => 'https://wpmeetupstuttgart.de/' ),
-			'https://www.meetup.com/de-DE/wuerzburg-wordpress-meetup/' => array( 'title' => 'Würzburg', 'url' => 'https://www.meetup.com/de-DE/wuerzburg-wordpress-meetup/' ),
-			'https://www.meetup.com/de/wordpress-zurich' => array( 'title' => 'Zürich', 'url' => 'https://www.meetup.com/de/wordpress-zurich/' ),
+			'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/' => array(
+				'title' => 'Aachen',
+				'url'   => 'https://www.meetup.com/de-DE/Aachen-WordPress-Meetup/',
+			),
+			'https://wpmeetup-berlin.de'                 => array(
+				'title' => 'Berlin',
+				'url'   => 'https://wpmeetup-berlin.de/',
+			),
+			'https://wpbern.ch'                          => array(
+				'title' => 'Bern',
+				'url'   => 'https://wpbern.ch/',
+			),
+			'https://www.wpbn.de'                        => array(
+				'title' => 'Bonn',
+				'url'   => 'https://www.wpbn.de',
+			),
+			'https://www.meetup.com/de-DE/bremen-wordpress-meetup-group/' => array(
+				'title' => 'Bremen',
+				'url'   => 'https://www.meetup.com/de-DE/bremen-wordpress-meetup-group/',
+			),
+			'https://wpdrs.de'                           => array(
+				'title' => 'Dresden',
+				'url'   => 'https://wpdrs.de/',
+			),
+			'https://www.meetup.com/de-DE/wordpress-meetup-dortmund/' => array(
+				'title' => 'Dortmund',
+				'url'   => 'https://www.meetup.com/de-DE/wordpress-meetup-dortmund/',
+			),
+			'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/' => array(
+				'title' => 'Düsseldorf',
+				'url'   => 'https://www.meetup.com/de-DE/Dusseldorf-WordPress-Meetup/',
+			),
+			'http://www.wpmeetup-eifel.de'               => array(
+				'title' => 'Eifel',
+				'url'   => 'http://www.wpmeetup-eifel.de/',
+			),
+			'https://wpmeetup-frankfurt.de'              => array(
+				'title' => 'Frankfurt',
+				'url'   => 'https://wpmeetup-frankfurt.de/',
+			),
+			'https://www.wpmeetup-hamburg.de'            => array(
+				'title' => 'Hamburg',
+				'url'   => 'https://www.wpmeetup-hamburg.de/',
+			),
+			'http://wpmeetup-hannover.de'                => array(
+				'title' => 'Hannover',
+				'url'   => 'http://wpmeetup-hannover.de/',
+			),
+			'https://wpjena.de'                          => array(
+				'title' => 'Jena',
+				'url'   => 'https://wpjena.de/',
+			),
+			'http://wpmeetup-karlsruhe.de'               => array(
+				'title' => 'Karlsruhe',
+				'url'   => 'http://wpmeetup-karlsruhe.de/',
+			),
+			'https://wpkoblenz.de'                       => array(
+				'title' => 'Koblenz',
+				'url'   => 'https://wpkoblenz.de',
+			),
+			'https://wpcgn.de'                           => array(
+				'title' => 'Köln',
+				'url'   => 'https://wpcgn.de/',
+			),
+			'https://www.meetup.com/de-DE/leipzig-wordpress-meetup/' => array(
+				'title' => 'Leipzig',
+				'url'   => 'https://www.meetup.com/de-DE/leipzig-wordpress-meetup/',
+			),
+			'https://wpmeetup-mannheim.de'               => array(
+				'title' => 'Mannheim',
+				'url'   => 'https://wpmeetup-mannheim.de/',
+			),
+			'https://wpmeetup-muenchen.org'              => array(
+				'title' => 'München',
+				'url'   => 'https://wpmeetup-muenchen.org/',
+			),
+			'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/' => array(
+				'title' => 'Neustadt',
+				'url'   => 'https://www.meetup.com/de-DE/WordPress-Meetup-Neustadt/',
+			),
+			'https://wpmeetup-nuernberg.de'              => array(
+				'title' => 'Nürnberg',
+				'url'   => 'https://wpmeetup-nuernberg.de/',
+			),
+			'https://www.meetup.com/de-DE/wpmeetup-muenster-osnabrueck/' => array(
+				'title' => 'Osnabrück/Münster',
+				'url'   => 'https://www.meetup.com/de-DE/wpmeetup-muenster-osnabrueck/',
+			),
+			'https://www.meetup.com/de-DE/wp-meetup-paderborn/' => array(
+				'title' => 'Paderborn',
+				'url'   => 'https://www.meetup.com/de-DE/wp-meetup-paderborn/',
+			),
+			'https://wpmeetup-potsdam.de'                => array(
+				'title' => 'Potsdam',
+				'url'   => 'https://wpmeetup-potsdam.de/',
+			),
+			'https://www.wpmeetup-rostock.de'            => array(
+				'title' => 'Rostock',
+				'url'   => 'https://www.wpmeetup-rostock.de/',
+			),
+			'https://www.meetup.com/de-DE/wordpress-meetup-saarland/' => array(
+				'title' => 'Saarland',
+				'url'   => 'https://www.meetup.com/de-DE/wordpress-meetup-saarland/',
+			),
+			'https://wpmeetupstuttgart.de'               => array(
+				'title' => 'Stuttgart',
+				'url'   => 'https://wpmeetupstuttgart.de/',
+			),
+			'https://www.meetup.com/de-DE/wuerzburg-wordpress-meetup/' => array(
+				'title' => 'Würzburg',
+				'url'   => 'https://www.meetup.com/de-DE/wuerzburg-wordpress-meetup/',
+			),
+			'https://www.meetup.com/de/wordpress-zurich' => array(
+				'title' => 'Zürich',
+				'url'   => 'https://www.meetup.com/de/wordpress-zurich/',
+			),
 		);
 
 		return $meetups;
@@ -98,19 +185,22 @@ class WPMeetupListWidget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget']; // WPCS: XSS okay.
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 
 		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // WPCS: XSS okay.
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
-		$widget_args = apply_filters( 'wpmg_list_widget_args', array(
-			'prefix'    => 'WP Meetup ',
-			'link_atts' => array(
-				'target' => '',
-				'rel'    => 'nofollow',
-			),
-		) );
+		$widget_args = apply_filters(
+			'wpmg_list_widget_args',
+			array(
+				'prefix'    => 'WP Meetup ',
+				'link_atts' => array(
+					'target' => '',
+					'rel'    => 'nofollow',
+				),
+			)
+		);
 
 		$link_atts = '';
 
@@ -136,7 +226,7 @@ class WPMeetupListWidget extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 							<?php echo esc_html( $widget_args['prefix'] . $meetup['title'] ); ?>
 						</a>
 					</li>
@@ -147,7 +237,7 @@ class WPMeetupListWidget extends WP_Widget {
 
 		<?php
 
-		echo $args['after_widget']; // WPCS: XSS okay.
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 
 	/**
@@ -158,7 +248,7 @@ class WPMeetupListWidget extends WP_Widget {
 	 *
 	 * @return array
 	 */
-	function update( $new_instance, $old_instance ) {
+	public function update( $new_instance, $old_instance ) {
 		return $new_instance;
 	}
 
@@ -169,8 +259,8 @@ class WPMeetupListWidget extends WP_Widget {
 	 *
 	 * @return void
 	 */
-	function form( $instance ) {
-		$title = sanitize_text_field( $instance['title'] );
+	public function form( $instance ) {
+		$title      = sanitize_text_field( $instance['title'] );
 		$filter_own = isset( $instance['filter_own'] ) ? (bool) $instance['filter_own'] : false;
 		?>
 
