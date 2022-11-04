@@ -87,10 +87,10 @@ class WPMeetupListWidget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget']; // WPCS: XSS okay.
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 
 		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // WPCS: XSS okay.
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		$widget_args = apply_filters(
@@ -127,7 +127,7 @@ class WPMeetupListWidget extends WP_Widget {
 			<ul class="menu">
 				<?php foreach ( $meetups as $meetup ) : ?>
 					<li class="menu-item">
-						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // WPCS: XSS okay. ?>>
+						<a href="<?php echo esc_attr( $meetup['url'] ); ?>" title="WP Meetup <?php echo esc_attr( $meetup['title'] ); ?>" <?php echo $link_atts; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 							<?php echo esc_html( $meetup['title'] ); ?>
 						</a>
 					</li>
@@ -138,7 +138,7 @@ class WPMeetupListWidget extends WP_Widget {
 
 		<?php
 
-		echo $args['after_widget']; // WPCS: XSS okay.
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 	}
 
 	/**
