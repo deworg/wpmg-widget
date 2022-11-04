@@ -56,7 +56,7 @@ class WPMeetupListWidget extends WP_Widget {
 	 * @return array
 	 */
 	public function get_meetups() {
-		$meetups = [];
+		$meetups = array();
 
 		$api_data = get_transient( 'wpmg_wpmeetup_meetups' );
 
