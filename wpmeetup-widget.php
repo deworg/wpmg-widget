@@ -10,7 +10,7 @@
  * Plugin Name: WPMeetups Widget deutschsprachig
  * Plugin URI: https://github.com/deworg/wpmg-widget
  * Description: Alle deutschsprachigen WP Meetups - in einem Widget.
- * Version: 0.5.2
+ * Version: 0.6.0
  * Author: wpFRA
  * Author URI: https://wpfra.de
  * Text Domain: wpmeetup-widget
