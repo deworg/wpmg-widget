@@ -56,33 +56,69 @@ class WPMeetupListWidget extends WP_Widget {
 	 * @return array
 	 */
 	public function get_meetups() {
-		$meetups = [];
+		// Get new API data, if the current data is empty or expired.
+		$api_data = $this->get_new_data_from_api();
 
-		$api_data = get_transient( 'wpmg_wpmeetup_meetups' );
+		// Create the meetups array from the new API data.
+		if ( false !== $api_data ) {
+			$meetups = array();
+			foreach ( $api_data as $meetup ) {
+				if ( isset( $meetup['custom_fields']['wpmg_home'] ) && ! empty( $meetup['custom_fields']['wpmg_home'] ) ) {
+					$meetups[ $meetup['title']['rendered'] ] = array(
+						'title' => $meetup['title']['rendered'],
+						'url'   => $meetup['custom_fields']['wpmg_home'],
+					);
+				}
+			}
 
+			// Save the new meetups list into the option.
+			if ( ! empty( $meetups ) ) {
+				// Store the final list of meetups in an option, as the transient is not persistent.
+				update_option( 'wpmg_wpmeetup_meetups_list', $meetups );
+
+				return $meetups;
+			}
+		}
+
+		// If no new API data was requested, return the old data.
+		return get_option( 'wpmg_wpmeetup_meetups_list' );
+	}
+
+	/**
+	 * Get meetups from the API. Returns `false` in case the API request was not successful or the last request was not older than one day.
+	 *
+	 * @return false|mixed|null
+	 */
+	public function get_new_data_from_api() {
+		// Set the date of the last API check.
+		$last_request = get_transient( 'wpmg_wpmeetup_meetups_request_expiration' );
+		// If there was a previous request, and it was less than a day ago, don't get new data from the API.
+		if ( false !== $last_request && (int) $last_request > strtotime( '-1 day' ) ) {
+			return false;
+		}
+
+		// Store the current time for the new API request.
+		set_transient( 'wpmg_wpmeetup_meetups_request_expiration', time() );
+
+		// Use a transient to cache API data.
+		$api_data = get_transient( 'wpmg_wpmeetup_meetups_api_response' );
 		if ( false === $api_data ) {
 			$api_request  = 'https://wpmeetups.de/wp-json/wp/v2/meetup/?per_page=100&orderby=title&order=asc';
 			$api_response = wp_remote_get( $api_request );
 			$api_code     = wp_remote_retrieve_response_code( $api_response );
 			if ( 200 !== $api_code ) {
-				return;
+				// If the API responded with a different code as 200, set a shorter expiration time.
+				set_transient( 'wpmg_wpmeetup_meetups_request_expiration', strtotime( '-1 hour' ) );
+
+				return false;
 			}
 			$api_data = json_decode( wp_remote_retrieve_body( $api_response ), true );
 			if ( ! empty( $api_data ) ) {
-				set_transient( 'wpmg_wpmeetup_meetups', $api_data, DAY_IN_SECONDS );
+				set_transient( 'wpmg_wpmeetup_meetups_api_response', $api_data, DAY_IN_SECONDS );
 			}
 		}
 
-		foreach ( $api_data as $meetup ) {
-			if ( ! empty( $meetup['homepage'] ) ) {
-				$meetups[ $meetup['title']['rendered'] ] = array(
-					'title' => $meetup['title']['rendered'],
-					'url'   => $meetup['homepage'],
-				);
-			}
-		}
-
-		return $meetups;
+		return $api_data;
 	}
 
 	/**
@@ -119,12 +155,11 @@ class WPMeetupListWidget extends WP_Widget {
 
 		$meetups = $this->get_meetups();
 
-		if ( ! empty( $instance['filter_own'] ) ) {
+		if ( ! empty( $meetups ) && ! empty( $instance['filter_own'] ) ) {
 			$siteurl = site_url();
-
-			if ( array_key_exists( $siteurl, $meetups ) ) {
-				unset( $meetups[ $siteurl ] );
-			}
+			$meetups = array_filter( $meetups, function ( $meetup ) use ( $siteurl ) {
+				return $meetup['url'] !== $siteurl;
+			} );
 		}
 
 		?>
