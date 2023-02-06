@@ -63,11 +63,14 @@ class WPMeetupListWidget extends WP_Widget {
 		if ( false !== $api_data ) {
 			$meetups = array();
 			foreach ( $api_data as $meetup ) {
-				if ( isset( $meetup['custom_fields']['wpmg_home'] ) && ! empty( $meetup['custom_fields']['wpmg_home'] ) ) {
-					$meetups[ $meetup['title']['rendered'] ] = array(
-						'title' => $meetup['title']['rendered'],
-						'url'   => $meetup['custom_fields']['wpmg_home'],
-					);
+				if ( isset( $meetup['custom_fields'] ) ) {
+					$url = $meetup['custom_fields']['wpmg_home'] ?: $meetup['custom_fields']['wpmg_meetupcom'] ?: '';
+					if ( ! empty( $url ) ) {
+						$meetups[ $meetup['title']['rendered'] ] = array(
+							'title' => $meetup['title']['rendered'],
+							'url'   => $url,
+						);
+					}
 				}
 			}
 
@@ -94,7 +97,7 @@ class WPMeetupListWidget extends WP_Widget {
 		$last_request = get_transient( 'wpmg_wpmeetup_meetups_request_expiration' );
 		// If there was a previous request, and it was less than a day ago, don't get new data from the API.
 		if ( false !== $last_request && (int) $last_request > strtotime( '-1 day' ) ) {
-			return false;
+			#return false;
 		}
 
 		// Store the current time for the new API request.
